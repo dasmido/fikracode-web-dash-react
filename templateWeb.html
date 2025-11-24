@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر التجارة الإلكترونية</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* -------------------- GLOBAL STYLES -------------------- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background: #f7f7f7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* -------------------- NAVBAR -------------------- */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px #00000010;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            gap: 18px;
+        }
+
+        .navbar-link {
+            padding: 8px 12px;
+            font-size: 16px;
+            color: #444;
+            transition: .3s;
+        }
+
+        .navbar-link:hover,
+        .navbar-link.active {
+            color: #ff6600;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            left: -5px;
+            background: #ff6600;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        /* -------------------- USER DROPDOWN -------------------- */
+        .user-dropdown {
+            position: relative;
+        }
+
+        .user-btn {
+            background: white;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 35px;
+            left: 0;
+            background: white;
+            min-width: 150px;
+            box-shadow: 0 4px 20px #00000020;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+            transition: .2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f4f4f4;
+        }
+
+        /* -------------------- HERO CAROUSEL -------------------- */
+        .hero-carousel {
+            background: white;
+            padding: 40px 0;
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .carousel-slide.active {
+            display: flex;
+        }
+
+        .carousel-title {
+            font-size: 36px;
+            color: #222;
+            margin: 0 0 15px 0;
+        }
+
+        .carousel-description {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .carousel-btn {
+            background: #ff6600;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .carousel-btn:hover {
+            background: #e95b00;
+        }
+
+        .carousel-image img {
+            width: 450px;
+        }
+
+        .carousel-nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            border: none;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background: #ff6600;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            box-shadow: 0 2px 6px #00000030;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        /* -------------------- PRODUCTS SECTION -------------------- */
+        .products-slider {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .products-slider-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .products-slider-title {
+            font-size: 30px;
+        }
+
+        .products-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        .product-card {
+            background: #fff;
+            min-width: 260px;
+            box-shadow: 0 3px 10px #00000015;
+            border-radius: 15px;
+            padding: 15px;
+            transition: .3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-name {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .product-price {
+            color: #ff6600;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .product-btn-primary {
+            background: #ff6600;
+            color: white;
+        }
+
+        .product-btn-secondary {
+            background: #eee;
+        }
+
+        /* -------------------- FOOTER -------------------- */
+        .footer {
+            background: #222;
+            color: #eee;
+            padding: 50px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-title {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .footer-link {
+            color: #ccc;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .footer-link:hover {
+            color: #ff6600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #bbb;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <i class="fas fa-store"></i>
+            <span>فكرة كود</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="#home" class="navbar-link active">الرئيسية</a></li>
+            <li><a href="#products" class="navbar-link">المنتجات</a></li>
+            <li><a href="#offers" class="navbar-link">العروض</a></li>
+            <li><a href="#contact" class="navbar-link">تواصل</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <button class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
+
+            <div class="user-dropdown">
+                <button class="user-btn"><i class="fas fa-user"></i></button>
+                <div class="dropdown-menu" id="userDropdown">
+                    <a href="#" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-carousel">
+    <div class="carousel-container">
+
+        <div class="carousel-slide active">
+            <div>
+                <h1 class="carousel-title">اكتشف أحدث المنتجات</h1>
+                <p class="carousel-description">أفضل المنتجات والعروض الحصرية</p>
+                <button class="carousel-btn">تسوق الآن <i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="carousel-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="">
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <div>
+                <h1 class="carousel-title">خصومات تصل إلى 70%</h1>
+                <p class="carousel-description">عروض مذهلة لوقت محدود</p>
+                <button class="carousel-btn">عرض العروض</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600">
+        </div>
+
+        <div class="carousel-slide">
+            <div>
+                <h1 class="carousel-title">شحن مجاني</h1>
+                <p class="carousel-description">لكل الطلبات فوق 200 ريال</p>
+                <button class="carousel-btn">ابدأ الآن</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600">
+        </div>
+
+    </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="products-slider" id="products">
+    <div class="products-slider-header">
+        <h2 class="products-slider-title">منتجات مميزة</h2>
+        <p class="products-slider-subtitle">أفضل المنتجات المختارة بعناية</p>
+    </div>
+
+    <div class="products-container">
+
+        <!-- Sample Product 1 -->
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1512499617640-c2f999098c01?w=400">
+            <h3 class="product-name">سماعات بلوتوث</h3>
+            <p>جودة صوت عالية وتصميم مميز</p>
+            <div class="product-price">120 ريال</div>
+            <div class="product-actions">
+                <button class="product-btn product-btn-primary">إضافة للسلة</button>
+                <button class="product-btn product-btn-secondary"><i class="fas fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- Sample Product 2 -->
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400">
+            <h3 class="product-name">كاميرا احترافية</h3>
+            <p>أفضل كاميرا لتصوير احترافي</p>
+            <div class="product-price">2300 ريال</div>
+            <div class="product-actions">
+                <button class="product-btn product-btn-primary">إضافة للسلة</button>
+                <button class="product-btn product-btn-secondary"><i class="fas fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- Sample Product 3 -->
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=400">
+            <h3 class="product-name">ساعة ذكية</h3>
+            <p>مميزات رائعة وصحة أفضل</p>
+            <div class="product-price">350 ريال</div>
+            <div class="product-actions">
+                <button class="product-btn product-btn-primary">إضافة للسلة</button>
+                <button class="product-btn product-btn-secondary"><i class="fas fa-heart"></i></button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-main">
+            <div>
+                <h3 class="footer-title">متجري</h3>
+                <p>أفضل مكان للتسوق الإلكتروني</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">روابط</h4>
+                <a class="footer-link" href="#">الرئيسية</a>
+                <a class="footer-link" href="#">المنتجات</a>
+                <a class="footer-link" href="#">العروض</a>
+            </div>
+
+            <div>
+                <h4 class="footer-title">مساعدة</h4>
+                <a class="footer-link" href="#">الشحن</a>
+                <a class="footer-link" href="#">الإرجاع</a>
+            </div>
+
+            <div>
+                <h4 class="footer-title">تواصل</h4>
+                <p>العراق، بغداد</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">© 2024 جميع الحقوق محفوظة</div>
+    </div>
+</footer>
+
+<script>
+    // Dropdown toggler
+    document.querySelector('.user-btn').addEventListener('click', () => {
+        document.getElementById('userDropdown').classList.toggle('show');
+    });
+
+    // Close if clicked away
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('userDropdown');
+        const btn = document.querySelector('.user-btn');
+
+        if (!btn.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+</script>
+
+</body>
+</html>
