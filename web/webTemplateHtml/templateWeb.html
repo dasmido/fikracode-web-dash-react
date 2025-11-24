@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر التجارة الإلكترونية</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <i class="fas fa-store"></i>
+            <span>فكرة كود</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="#home" class="navbar-link active">الرئيسية</a></li>
+            <li><a href="#products" class="navbar-link">المنتجات</a></li>
+            <li><a href="/categories" class="navbar-link">الفئات</a></li>
+            <li><a href="#offers" class="navbar-link">العروض</a></li>
+            <li><a href="#contact" class="navbar-link">تواصل معنا</a></li>
+        </ul>
+        <div class="navbar-actions">
+            <!--<button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>-->
+            <button class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
+            <div class="user-dropdown">
+                <button class="user-btn" onclick="toggleUserDropdown()">
+                    <i class="fas fa-user"></i>
+                </button>
+                <div class="dropdown-menu" id="userDropdown">
+                            <div class="dropdown-header">
+                                <span class="user-name">email@email.com</span>
+                            </div>
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="/logout" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Carousel Section -->
+<section class="hero-carousel">
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <div class="carousel-content">
+                <div class="carousel-text">
+                    <h1 class="carousel-title">اكتشف أحدث المنتجات</h1>
+                    <p class="carousel-description">
+                        استمتع بتجربة تسوق فريدة مع أفضل المنتجات والعروض الحصرية
+                    </p>
+                    <button class="carousel-btn">
+                        تسوق الآن
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center&q=80" alt="منتجات مميزة" />
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <div class="carousel-content">
+                <div class="carousel-text">
+                    <h1 class="carousel-title">عروض خاصة لك</h1>
+                    <p class="carousel-description">
+                        احصل على خصومات تصل إلى 70% على جميع المنتجات المختارة
+                    </p>
+                    <button class="carousel-btn">
+                        عرض العروض
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center&q=80" alt="عروض خاصة" />
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <div class="carousel-content">
+                <div class="carousel-text">
+                    <h1 class="carousel-title">شحن مجاني</h1>
+                    <p class="carousel-description">
+                        استمتع بشحن مجاني لجميع الطلبات فوق 200 ريال
+                    </p>
+                    <button class="carousel-btn">
+                        ابدأ التسوق
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="carousel-image">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop&crop=center&q=80" alt="شحن مجاني" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel Navigation -->
+    <div class="carousel-nav">
+        <button class="carousel-dot active" data-slide="0"></button>
+        <button class="carousel-dot" data-slide="1"></button>
+        <button class="carousel-dot" data-slide="2"></button>
+    </div>
+
+    <!-- Carousel Arrows -->
+    <button class="carousel-arrow carousel-prev">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    <button class="carousel-arrow carousel-next">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</section>
+
+<!-- Products Slider Section -->
+<section class="products-slider" id="products">
+    <div class="products-slider-container">
+        <div class="products-slider-header">
+            <h2 class="products-slider-title">منتجات مميزة</h2>
+            <p class="products-slider-subtitle">
+                اكتشف أفضل المنتجات المختارة بعناية لتلبية جميع احتياجاتك
+            </p>
+        </div>
+
+        <div class="products-slider-wrapper">
+            <div class="products-container" id="productsContainer">
+                    <div class="product-card" data-product-id="${product.getId()}">
+                        <div class="product-image">
+                            <img src="img" alt="prod name" />
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">erw</h3>
+                            <p class="product-description">df</p>
+                            <div class="product-price">efdß2343</div>
+                            <div class="product-actions">
+                                <button class="product-btn product-btn-primary">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    إضافة للسلة
+                                </button>
+                                <button class="product-btn product-btn-secondary">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Slider Navigation -->
+            <div class="slider-nav">
+                <button class="slider-dot active" data-slide="0"></button>
+                <button class="slider-dot" data-slide="1"></button>
+            </div>
+
+            <!-- Slider Arrows -->
+            <button class="slider-arrow prev" id="productsPrev">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="slider-arrow next" id="productsNext">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="statistics">
+    <div class="statistics-container">
+        <div class="statistics-header">
+            <h2 class="statistics-title">إحصائياتنا</h2>
+            <p class="statistics-subtitle">
+                اكتشف المزيد عن متجرنا من خلال الإحصائيات التالية
+            </p>
+        </div>
+
+        <div class="statistics-cards">
+            <div class="statistics-card">
+                <div class="statistics-card-header">
+                    <i class="fas fa-boxes statistics-icon"></i>
+                    <h3 class="statistics-card-title">عدد المنتجات</h3>
+                </div>
+                <div class="statistics-card-content">
+                    <p class="statistics-card-value">12</p>
+                    <p class="statistics-card-description">منتج متاح</p>
+                </div>
+            </div>
+
+            <div class="statistics-card">
+                <div class="statistics-card-header">
+                    <i class="fas fa-users statistics-icon"></i>
+                    <h3 class="statistics-card-title">عدد العملاء</h3>
+                </div>
+                <div class="statistics-card-content">
+                    <p class="statistics-card-value">1000+</p>
+                    <p class="statistics-card-description">عميل راضي</p>
+                </div>
+            </div>
+
+            <div class="statistics-card">
+                <div class="statistics-card-header">
+                    <i class="fas fa-trophy statistics-icon"></i>
+                    <h3 class="statistics-card-title">سنوات الخبرة</h3>
+                </div>
+                <div class="statistics-card-content">
+                    <p class="statistics-card-value">5+</p>
+                    <p class="statistics-card-description">سنوات في السوق</p>
+                </div>
+            </div>
+
+            <div class="statistics-card">
+                <div class="statistics-card-header">
+                    <i class="fas fa-star statistics-icon"></i>
+                    <h3 class="statistics-card-title">نسبة النجاح</h3>
+                </div>
+                <div class="statistics-card-content">
+                    <p class="statistics-card-value">95%</p>
+                    <p class="statistics-card-description">معدل النجاح</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="services-container">
+        <div class="services-header">
+            <h2 class="services-title">خدماتنا</h2>
+            <p class="services-subtitle">
+                نقدم لكم أفضل الخدمات لضمان تجربة تسوق ممتازة ومريحة
+            </p>
+        </div>
+
+        <div class="services-cards">
+            <div class="services-card">
+                <div class="services-card-header">
+                    <i class="fas fa-truck services-icon"></i>
+                    <h3 class="services-card-title">شحن سريع</h3>
+                </div>
+                <div class="services-card-content">
+                    <p class="services-card-description">توصيل سريع وآمن لجميع الطلبات خلال 24-48 ساعة</p>
+                </div>
+            </div>
+
+            <div class="services-card">
+                <div class="services-card-header">
+                    <i class="fas fa-shield-alt services-icon"></i>
+                    <h3 class="services-card-title">ضمان الجودة</h3>
+                </div>
+                <div class="services-card-content">
+                    <p class="services-card-description">جميع منتجاتنا مضمونة وخاضعة لمعايير الجودة العالية</p>
+                </div>
+            </div>
+
+            <div class="services-card">
+                <div class="services-card-header">
+                    <i class="fas fa-undo services-icon"></i>
+                    <h3 class="services-card-title">إرجاع مجاني</h3>
+                </div>
+                <div class="services-card-content">
+                    <p class="services-card-description">إمكانية إرجاع المنتجات خلال 30 يوم بدون رسوم إضافية</p>
+                </div>
+            </div>
+
+            <div class="services-card">
+                <div class="services-card-header">
+                    <i class="fas fa-headset services-icon"></i>
+                    <h3 class="services-card-title">دعم العملاء</h3>
+                </div>
+                <div class="services-card-content">
+                    <p class="services-card-description">فريق دعم متخصص متاح 24/7 لمساعدتك في جميع استفساراتك</p>
+                </div>
+            </div>
+
+            <div class="services-card">
+                <div class="services-card-header">
+                    <i class="fas fa-credit-card services-icon"></i>
+                    <h3 class="services-card-title">دفع آمن</h3>
+                </div>
+                <div class="services-card-content">
+                    <p class="services-card-description">طرق دفع متعددة وآمنة مع تشفير أحدث المعاملات</p>
+                </div>
+            </div>
+
+            <div class="services-card">
+                <div class="services-card-header">
+                    <i class="fas fa-gift services-icon"></i>
+                    <h3 class="services-card-title">عروض خاصة</h3>
+                </div>
+                <div class="services-card-content">
+                    <p class="services-card-description">عروض وخصومات حصرية لعملائنا المميزين بانتظام</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Clients Section -->
+<section class="clients">
+    <div class="clients-container">
+        <div class="clients-header">
+            <h2 class="clients-title">عملائنا</h2>
+            <p class="clients-subtitle">
+                اكتشف المزيد عن ما يقوله عملائنا من خلال الشهادات التالية
+            </p>
+        </div>
+
+        <div class="clients-testimonials">
+            <div class="testimonial-card">
+                <div class="testimonial-card-header">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&h=100&fit=crop&crop=face&q=80" alt="صورة العميل" />
+                    <div class="testimonial-card-info">
+                        <h3 class="testimonial-card-name">محمد أحمد</h3>
+                        <div class="testimonial-card-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card-content">
+                    <p class="testimonial-card-review">
+                        لقد استمتعت بتجربة تسوق فريدة مع أفضل المنتجات والعروض الحصرية. الخدمة ممتازة والجودة عالية جداً.
+                    </p>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-card-header">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop&crop=face&q=80" alt="صورة العميل" />
+                    <div class="testimonial-card-info">
+                        <h3 class="testimonial-card-name">أميرة عبد الله</h3>
+                        <div class="testimonial-card-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card-content">
+                    <p class="testimonial-card-review">
+                        متجر رائع يوفر جميع احتياجاتي. الشحن سريع والتغليف آمن. سأتسوق من هنا مرة أخرى بالتأكيد.
+                    </p>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-card-header">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=100&h=100&fit=crop&crop=face&q=80" alt="صورة العميل" />
+                    <div class="testimonial-card-info">
+                        <h3 class="testimonial-card-name">عبد الرحمن محمد</h3>
+                        <div class="testimonial-card-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card-content">
+                    <p class="testimonial-card-review">
+                        تجربة ممتازة مع خدمة عملاء متميزة. المنتجات أصلية والأسعار تنافسية. أوصي بهذا المتجر للجميع.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="clients-logos">
+            <div class="client-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png" alt="جوجل" />
+            </div>
+            <div class="client-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/eBay-Logo.png" alt="إيباي" />
+            </div>
+            <div class="client-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png" alt="جوجل" />
+            </div>
+            <div class="client-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png" alt="جوجل" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <i class="fas fa-store footer-logo-icon"></i>
+                    <h3 class="footer-brand-title">متجري</h3>
+                    <p class="footer-brand-description">
+                        أفضل وجهة للتسوق الإلكتروني في المنطقة. نقدم منتجات عالية الجودة وخدمة عملاء متميزة.
+                    </p>
+                </div>
+
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link" aria-label="فيسبوك">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="تويتر">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="إنستغرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="لينكد إن">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="يوتيوب">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" class="footer-link">الرئيسية</a></li>
+                    <li><a href="#products" class="footer-link">المنتجات</a></li>
+                    <li><a href="#categories" class="footer-link">الفئات</a></li>
+                    <li><a href="#offers" class="footer-link">العروض الخاصة</a></li>
+                    <li><a href="#about" class="footer-link">من نحن</a></li>
+                    <li><a href="#contact" class="footer-link">تواصل معنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">خدمة العملاء</h4>
+                <ul class="footer-links">
+                    <li><a href="#faq" class="footer-link">الأسئلة الشائعة</a></li>
+                    <li><a href="#shipping" class="footer-link">الشحن والتوصيل</a></li>
+                    <li><a href="#returns" class="footer-link">سياسة الإرجاع</a></li>
+                    <li><a href="#warranty" class="footer-link">الضمانات</a></li>
+                    <li><a href="#support" class="footer-link">الدعم الفني</a></li>
+                    <li><a href="#track" class="footer-link">تتبع الطلب</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">تواصل معنا</h4>
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+                        <span>العراق،بغداد</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone footer-contact-icon"></i>
+                        <span>+966 50 123 4567</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope footer-contact-icon"></i>
+                        <span>info@matjary.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-clock footer-contact-icon"></i>
+                        <span>الأحد - الخميس: 8:00 ص - 10:00 م</span>
+                    </div>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h5 class="footer-newsletter-title">اشترك في نشرتنا البريدية</h5>
+                    <form class="footer-newsletter-form">
+                        <input type="email" class="footer-newsletter-input" placeholder="أدخل بريدك الإلكتروني" required>
+                        <button type="submit" class="footer-newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="footer-payments">
+            <h5 class="footer-payments-title">نقبل الدفع عبر</h5>
+            <div class="footer-payment-methods">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/Visa-Logo.png" alt="فيزا" class="footer-payment-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/Mastercard-Logo.png" alt="ماستركارد" class="footer-payment-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/PayPal-Logo.png" alt="باي بال" class="footer-payment-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/Apple-Pay-Logo.png" alt="أبل باي" class="footer-payment-logo">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/Stc-Pay-Logo.png" alt="إس تي سي باي" class="footer-payment-logo">
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p class="footer-copyright">
+                    © 2024 متجري. جميع الحقوق محفوظة. | تصميم وتطوير بكود عالي الجودة
+                </p>
+                <div class="footer-bottom-links">
+                    <a href="#privacy" class="footer-bottom-link">سياسة الخصوصية</a>
+                    <a href="#terms" class="footer-bottom-link">الشروط والأحكام</a>
+                    <a href="#cookies" class="footer-bottom-link">سياسة الكوكيز</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/carousel.js"></script>
+<script>
+    function toggleUserDropdown() {
+        const dropdown = document.getElementById('userDropdown');
+        dropdown.classList.toggle('show');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('userDropdown');
+        const userBtn = document.querySelector('.user-btn');
+
+        if (!dropdown.contains(event.target) && !userBtn.contains(event.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+
+    // Close dropdown when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.getElementById('userDropdown').classList.remove('show');
+        }
+    });
+</script>
+</body>
+</html>
