@@ -1,8 +1,9 @@
-'use client'
+'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
+import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -12,75 +13,41 @@ interface Product {
   img: string;
 }
 
-// Using Unsplash random images
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'ساعة ذكية',
-    description: 'ساعة ذكية بتصميم عصري',
-    price: 225000,
-    img: 'https://images.fizz.hu/api/image/dfca4fc0-6f58-479a-9904-33d99521ca4a.jpg?width=2000&height=2000&method=contain',
-  },
-  {
-    id: 2,
-    name: 'سماعات لاسلكية',
-    description: 'سماعات بجودة صوت عالية',
-    price: 300000,
-    img: 'https://images.fizz.hu/api/image/4d054202-6e44-41c9-9c30-a3d9273e18b8.png?width=2000&height=2000&method=contain',
-  },
-  {
-    id: 3,
-    name: 'هاتف ذكي',
-    description: 'هاتف بتقنية حديثة وكاميرا ممتازة',
-    price: 1800000,
-    img: 'https://source.unsplash.com/300x300/?smartphone',
-  },
-  {
-    id: 4,
-    name: 'حقيبة ظهر',
-    description: 'حقيبة ظهر مقاومة للماء وعملية',
-    price: 375000,
-    img: 'https://source.unsplash.com/300x300/?backpack',
-  },
-  {
-    id: 5,
-    name: 'نظارات شمسية',
-    description: 'نظارات شمسية أنيقة وعصرية',
-    price: 150000,
-    img: 'https://source.unsplash.com/300x300/?sunglasses',
-  },
-  {
-    id: 6,
-    name: 'كاميرا رقمية',
-    description: 'كاميرا عالية الدقة لتصوير رائع',
-    price: 1200000,
-    img: 'https://source.unsplash.com/300x300/?camera',
-  },
-  {
-    id: 7,
-    name: 'سوار رياضي',
-    description: 'سوار لمراقبة اللياقة البدنية',
-    price: 95000,
-    img: 'https://source.unsplash.com/300x300/?fitness',
-  },
-  {
-    id: 8,
-    name: 'ميكروفون',
-    description: 'ميكروفون عالي الجودة للتسجيلات',
-    price: 400000,
-    img: 'https://source.unsplash.com/300x300/?microphone',
-  },
-  {
-    id: 9,
-    name: 'لوحة مفاتيح',
-    description: 'لوحة مفاتيح ميكانيكية حديثة',
-    price: 220000,
-    img: 'https://source.unsplash.com/300x300/?keyboard',
-  },
-];
-
 export default function ProductsPage() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Replace with your REST API URL
+    const apiUrl = 'https://fakestoreapi.com/products';
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('فشل تحميل المنتجات');
+        const data = await response.json();
+
+        // Map API data to our Product interface
+        const mappedProducts: Product[] = data.map((item: any) => ({
+          id: item.id,
+          name: item.title,
+          description: item.description,
+          price: Math.floor(item.price * 1500), // Example conversion to IQD
+          img: item.image,
+        }));
+
+        setProducts(mappedProducts);
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
@@ -90,48 +57,99 @@ export default function ProductsPage() {
     <>
       <Navbar />
 
-      <div className="products-page">
-        <header className="products-header">
+      <div className="products-page" style={{ padding: '2rem', fontFamily: 'Cairo, sans-serif' }}>
+        <header className="products-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h1>منتجاتنا</h1>
           <p>اكتشف أحدث منتجاتنا المختارة بعناية لتلبية جميع احتياجاتك</p>
 
-          <div className="products-search">
+          <div className="products-search" style={{ marginTop: '1rem' }}>
             <input
               type="text"
               placeholder="ابحث عن منتج..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: '100%',
+                maxWidth: '400px',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                border: '1px solid #d1d5db',
+                outline: 'none',
+                textAlign: 'right',
+              }}
             />
           </div>
         </header>
 
-        <main className="products-grid">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <div key={product.id} className="product-card">
-                <Link href={`/products/${product.id}`}>
-                  <div className="product-image">
-                    <img src={product.img} alt={product.name} />
-                  </div>
-                </Link>
-                <div className="product-info">
-                  <h3 className="product-name">
-                    <Link href={`/products/${product.id}`}>{product.name}</Link>
-                  </h3>
-                  <p className="product-description">{product.description}</p>
-                  <div className="product-footer">
-                    <span className="product-price">{product.price.toLocaleString()} IQD</span>
-                    <Link href={`/products/${product.id}`}>
-                      <button className="product-btn">عرض التفاصيل</button>
-                    </Link>
+        {loading ? (
+          <p style={{ textAlign: 'center' }}>جارٍ تحميل المنتجات...</p>
+        ) : error ? (
+          <p style={{ textAlign: 'center', color: 'red' }}>{error}</p>
+        ) : (
+          <main
+            className="products-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '1.5rem',
+            }}
+          >
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="product-card"
+                  style={{
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    backgroundColor: '#fff',
+                  }}
+                >
+                  <Link href={`/products/${product.id}`}>
+                    <div className="product-image" style={{ width: '100%', height: '200px', position: 'relative' }}>
+                      <Image src={product.img} alt={product.name} fill style={{ objectFit: 'contain' }} />
+                    </div>
+                  </Link>
+                  <div className="product-info" style={{ padding: '1rem', flexGrow: 1 }}>
+                    <h3 className="product-name" style={{ margin: '0 0 0.5rem 0' }}>
+                      <Link href={`/products/${product.id}`}>{product.name}</Link>
+                    </h3>
+                    {/*<p className="product-description" style={{ fontSize: '0.9rem', color: '#6b7280', marginBottom: '1rem' }}>
+                      {product.description}
+                    </p>*/}
+                    <div className="product-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span className="product-price" style={{ fontWeight: 'bold' }}>
+                        {product.price.toLocaleString()} IQD
+                      </span>
+                      <Link href={`/products/${product.id}`}>
+                        <button
+                          className="product-btn"
+                          style={{
+                            backgroundColor: '#2563eb',
+                            color: '#fff',
+                            border: 'none',
+                            padding: '0.5rem 1rem',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            fontSize: '0.9rem',
+                          }}
+                        >
+                          عرض التفاصيل
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p className="no-results">لم يتم العثور على أي منتجات.</p>
-          )}
-        </main>
+              ))
+            ) : (
+              <p style={{ textAlign: 'center', gridColumn: '1/-1' }}>لم يتم العثور على أي منتجات.</p>
+            )}
+          </main>
+        )}
       </div>
     </>
   );
