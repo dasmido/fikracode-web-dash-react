@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Image from 'next/image';
+import Footer from '../components/Footer';
 
 interface Product {
   id: number;
@@ -96,54 +97,65 @@ export default function ProductsPage() {
           >
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className="product-card"
-                  style={{
-                    border: '1px solid #e5e7eb',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    backgroundColor: '#fff',
-                  }}
-                >
-                  <Link href={`/products/${product.id}`}>
-                    <div className="product-image" style={{ width: '100%', height: '200px', position: 'relative' }}>
-                      <Image src={product.img} alt={product.name} fill style={{ objectFit: 'contain' }} />
-                    </div>
-                  </Link>
-                  <div className="product-info" style={{ padding: '1rem', flexGrow: 1 }}>
-                    <h3 className="product-name" style={{ margin: '0 0 0.5rem 0' }}>
-                      <Link href={`/products/${product.id}`}>{product.name}</Link>
-                    </h3>
-                    {/*<p className="product-description" style={{ fontSize: '0.9rem', color: '#6b7280', marginBottom: '1rem' }}>
-                      {product.description}
-                    </p>*/}
-                    <div className="product-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span className="product-price" style={{ fontWeight: 'bold' }}>
-                        {product.price.toLocaleString()} IQD
-                      </span>
-                      <Link href={`/products/${product.id}`}>
-                        <button
-                          className="product-btn"
-                          style={{
-                            backgroundColor: '#2563eb',
-                            color: '#fff',
-                            border: 'none',
-                            padding: '0.5rem 1rem',
-                            borderRadius: '8px',
-                            cursor: 'pointer',
-                            fontSize: '0.9rem',
-                          }}
-                        >
-                          عرض التفاصيل
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                
+                 <Link 
+  href={`/products/${product.id}`} 
+  key={product.id}
+  style={{ textDecoration: 'none', color: 'inherit' }}
+>
+  <div
+    className="product-card"
+    style={{
+      border: '1px solid #e5e7eb',
+      borderRadius: '12px',
+      overflow: 'hidden',
+      boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: '#fff',
+      cursor: 'pointer',
+      transition: 'transform 0.2s',
+    }}
+  >
+    <div className="product-image" style={{ width: '100%', height: '200px', position: 'relative' }}>
+      <Image src={product.img} alt={product.name} fill style={{ objectFit: 'contain' }} />
+    </div>
+
+    <div className="product-info" style={{ padding: '1rem' }}>
+      <h3 className="product-name" style={{ margin: '0 0 0.5rem 0' }}>
+        {product.name}
+      </h3>
+
+      <div 
+        className="product-footer" 
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center' 
+        }}
+      >
+        <span className="product-price" style={{ fontWeight: 'bold' }}>
+          {product.price.toLocaleString()} IQD
+        </span>
+
+        <button
+          className="product-btn"
+          style={{
+            backgroundColor: '#2563eb',
+            color: '#fff',
+            border: 'none',
+            padding: '0.5rem 1rem',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '0.9rem',
+          }}
+        >
+          عرض التفاصيل
+        </button>
+      </div>
+    </div>
+  </div>
+</Link>
               ))
             ) : (
               <p style={{ textAlign: 'center', gridColumn: '1/-1' }}>لم يتم العثور على أي منتجات.</p>
@@ -151,6 +163,7 @@ export default function ProductsPage() {
           </main>
         )}
       </div>
+      <Footer />
     </>
   );
 }

@@ -15,8 +15,8 @@ export default function Home() {
    <ProductsSlider />
    <Statistics />
    <Services />
-   {/*<Clients />
-   <Footer />*/}
+   {/*<Clients />*/}
+   <Footer />
    </>
   );
 }

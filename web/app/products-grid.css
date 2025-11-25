@@ -1,0 +1,93 @@
+.products-section {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.products-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.products-header p {
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* GRID LAYOUT */
+.products-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 per row */
+  gap: 1.5rem;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.product-image img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.product-price {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.product-btn {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+/* RESPONSIVE BREAKPOINTS */
+/* ---------------------------------- */
+
+/* Large tablets → 3 per row */
+@media (max-width: 1100px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets → 2 per row */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small phones → 1 per row */
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}

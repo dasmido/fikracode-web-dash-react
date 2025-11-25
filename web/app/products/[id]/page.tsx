@@ -142,19 +142,22 @@ export default function ProductDetailsPage() {
             <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
               {product.price.toLocaleString()} IQD
             </span>
-            <button
-              style={{
-                marginTop: '1rem',
-                padding: '0.75rem 1.5rem',
-                backgroundColor: '#2563eb',
-                color: '#fff',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '1rem',
-              }}
-            >
-اطلب المنتج            </button>
+            <Link href={`/order/${product.id}`}>
+              <button
+                style={{
+                  marginTop: '1rem',
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: '#2563eb',
+                  color: '#fff',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                }}
+              >
+                اطلب المنتج
+              </button>
+            </Link>
           </div>
         </div>
 

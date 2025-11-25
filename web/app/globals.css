@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./products.css";
+@import "./products-grid.css";
 /* Modern RTL E-commerce Styles */
 
 * {
@@ -546,7 +547,7 @@ body {
 /* Statistics Section Styles */
 .statistics {
     padding: 4rem 0;
-    background: #f8fafc;
+    background: #f0f0f0;
 }
 
 .statistics-container {
@@ -1440,4 +1441,21 @@ body {
         gap: 1rem;
         text-align: center;
     }
+}
+
+/* Hide desktop menu on small screens */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+}
+
+/* Show desktop items and hide hamburger on large screens */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
 }
