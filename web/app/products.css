@@ -1,0 +1,128 @@
+.products-page {
+  max-width: 1650px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.products-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.products-header p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.products-search {
+  margin-top: 1rem;
+}
+
+.products-search input {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 1rem;
+}
+
+.products-search input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem; /* Increased space between cards */
+  align-items: stretch;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: box-shadow 0.3s;
+}
+
+.product-image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-info {
+  padding: 1rem; /* Slightly larger padding */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #111827;
+}
+
+.product-name a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-description {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1rem; /* More space between description and footer */
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price {
+  font-weight: 700;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+.product-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem; /* Slightly larger button */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.product-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.no-results {
+  text-align: center;
+  color: #6b7280;
+  grid-column: 1/-1;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
