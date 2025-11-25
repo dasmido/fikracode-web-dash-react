@@ -19,7 +19,7 @@ export default function ProductsGrid() {
       try {
         const res = await fetch('https://fakestoreapi.com/products');
         const data: Product[] = await res.json();
-        setProducts(data.slice(0, 10)); // 2 rows × 5 items
+        setProducts(data.slice(0, 6)); // 2 rows × 5 items
       } catch (err) {
         console.error('Failed to fetch products:', err);
       }

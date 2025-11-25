@@ -17,8 +17,9 @@
 .products-grid {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 per row */
+  grid-template-columns: repeat(3, 1fr); /* 5 per row */
   gap: 1.5rem;
+  margin: 5rem 15rem;
 }
 
 /* PRODUCT CARD */
@@ -74,14 +75,16 @@
 /* Large tablets → 3 per row */
 @media (max-width: 1100px) {
   .products-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0rem 0rem;
   }
 }
 
 /* Tablets → 2 per row */
 @media (max-width: 768px) {
   .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    margin: -1rem 0rem;
   }
 }
 
