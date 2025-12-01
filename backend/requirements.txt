@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-jose
+passlib[bcrypt]
+greenlet
+python-jose
+argon2_cffi
+sqlalchemy[asyncio]
+asyncpg
