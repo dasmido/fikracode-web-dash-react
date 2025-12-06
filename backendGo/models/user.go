@@ -11,4 +11,5 @@ type User struct {
 	Password  string    `gorm:"size:255" json:"-"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	Developed string    `json:"string"`
 }

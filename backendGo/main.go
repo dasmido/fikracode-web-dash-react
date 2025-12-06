@@ -1,13 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"os"
-
-	"backendgo/config"
-	"backendgo/models"
 	"backendgo/routes"
+	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -20,29 +15,13 @@ func main() {
 		log.Println(".env not found, using environment variables")
 	}
 
-	// init DB
-	db, err := config.InitDB()
-	if err != nil {
-		log.Fatalf("failed to connect database: %v", err)
-	}
-
-	// Auto Migrate
-	if err := db.AutoMigrate(&models.User{}, &models.Payment{}); err != nil {
-		log.Fatalf("auto mograte failed: %v", err)
-	}
-
 	// routes
-	r := gin.Default()
-	routes.Setup(r, db)
+	r := routes.SetupRouter()
+	port := "8080"
 
-	port := os.Getenv("APP_PORT")
-	if port == "" {
-		port = "8080"
+	log.Printf("🚀 Server is listening on port %s\n", port)
+	if err := r.Run(":" + port); err != nil {
+		log.Printf("Failed. to start server: %v", err)
 	}
-	addr := fmt.Sprintf(":%s", port)
-	log.Printf("listenng on port http://localhost:%s", addr)
 
-	if err := r.Run(addr); err != nil {
-		log.Fatalf("Failed to start server %v", err)
-	}
 }

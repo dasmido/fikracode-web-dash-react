@@ -1,14 +1,21 @@
 package config
 
-import (
-	"fmt"
-	"os"
+import "golang.org/x/oauth2"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-)
+var KindeOAuthConfig = &oauth2.Config{
+	ClientID:     "e0c9cc9ac4984998a35d77dfe437b58d",
+	ClientSecret: "TYXmAj4XqageQmEXkt9tFuHC56hXp8XVbVEgEH1xwj4ngbEKiXhe",
+	RedirectURL:  "http://localhost:8080/callback",
+	Scopes:       []string{"openid", "profile", "email"},
+	Endpoint: oauth2.Endpoint{
+		AuthURL:  "https://calendrey.kinde.com/oauth2/auth",
+		TokenURL: "https://calendrey.kinde.com/oauth2/token",
+	},
+}
 
-func InitDB() (*gorm.DB, error) {
+const KindeUserInfoURL = "https://api.kinde.com/v1/user"
+
+/*func InitDB() (*gorm.DB, error) {
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
 	user := os.Getenv("DB_USER")
@@ -19,9 +26,7 @@ func InitDB() (*gorm.DB, error) {
 		host, user, password, dbname, port)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		return nil, err
-	}
+		return 	}
 
 	return db, nil
-
-}
+}*/
