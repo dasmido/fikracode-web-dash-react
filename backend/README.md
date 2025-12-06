@@ -4,7 +4,7 @@
 $ uvicorn app.main:app --reload
 
 ### New Env
-$ python3 -m venv myvenv
+$ python3 -m venv .venv
 
 
 ## Switch to env 
